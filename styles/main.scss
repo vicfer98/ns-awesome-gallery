@@ -9,9 +9,17 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
+  * {
+    font-family: Arial, sans-serif;
+  }
+
+  .like-icon {
+    height: 14px;
+    vertical-align: top;
+  }
+
   .ns-gallery-photo {
     position: relative;
-    flex-grow: 1;
     height: 250px;
 
     .ns-gallery-photo-image, .ns-gallery-photo-overlay {
@@ -31,20 +39,36 @@
     }
 
     .ns-gallery-photo-overlay {
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0,0,0,0.4);
       color: #ffffff;
-      z-index: 2;
-      opacity: 0;
-      -webkit-transition: opacity 0.3s;
-      -moz-transition: opacity 0.3s;
-      -ms-transition: opacity 0.3s;
-      -o-transition: opacity 0.3s;
-      transition: opacity 0.3s;
-      padding: 15px;
+      z-index: 3;
+      -webkit-transition: background-color 0.4s;
+      -moz-transition: background-color 0.4s;
+      -ms-transition: background-color 0.4s;
+      -o-transition: background-color 0.4s;
+      transition: background-color 0.4s;
 
       &:hover {
         cursor: pointer;
-        opacity: 1;
+        background-color: rgba(0,0,0,0.1);
+      }
+
+      .ns-gallery-photo-likes {
+        background-color: rgba(0,0,0,0.7);
+        padding: 10px 15px;
+        -webkit-border-radius: 4px 0 4px 0;
+        -moz-border-radius: 4px 0 4px 0;
+        border-radius: 4px 0 4px 0;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        -webkit-transition: background-color 0.4s;
+        -moz-transition: background-color 0.4s;
+        -ms-transition: background-color 0.4s;
+        -o-transition: background-color 0.4s;
+        transition: background-color 0.4s;
+        font-size: 14px;
+        cursor: default;
       }
     }
 
@@ -66,7 +90,58 @@
   right: 0;
   bottom: 0;
   z-index: 10000;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.9);
+
+  .like-icon {
+    height: 16px;
+  }
+
+  .ns-gallery-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+
+    > div {
+      flex-grow: 1;
+      align-items: center;
+      display: flex;
+      cursor: pointer;
+
+      &:hover .fa {
+        visibility: visible;
+      }
+
+      .fa {
+        visibility: hidden;
+        font-size: 48px;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        width: 41px;
+        height: 41px;
+        line-height: 43px;
+        color: #ffffff;
+      }
+
+      &:first-child .fa {
+        margin-left: 25px;
+      }
+
+      &:last-child {
+        justify-content: flex-end;
+
+        .fa {
+          margin-right: 25px;
+        }
+      }
+    }
+  }
 
   #ns-gallery-previewer-close {
     font-size: 24px;
@@ -85,7 +160,7 @@
     top: 50px;
     left: 25px;
     right: 25px;
-    bottom: 200px;
+    bottom: 100px;
     display: flex;
     justify-content: center;
 
@@ -94,7 +169,6 @@
   .ns-gallery-full-photo {
     display: flex;
     align-items: center;
-    background-color: rgba(0,0,0,0.6);
     border-radius: 4px 0 0 4px;
     -webkit-border-radius: 4px 0 0 4px;
     -moz-border-radius: 4px 0 0 4px;
@@ -134,6 +208,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    display: none;
 
     ul {
       list-style: none;
@@ -164,10 +239,60 @@
       }
     }
   }
+
+  .ns-gallery-photo-action {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    text-align: center;
+
+    .like-button {
+      background-color: #39a882;
+      color: #ffffff;
+      padding: 10px 25px;
+      border: 1px solid #359571;
+      @extend .border-radius;
+      cursor: pointer;
+      font-size: 18px;
+
+      &:hover {
+        background-color: #48bf95;
+      }
+    }
+  }
 }
 
 @media (min-width: 0) and (max-width: 800px) {
   #ns-gallery-previewer .ns-gallery-photo-info {
     display: none;
+  }
+}
+
+@media (min-width: 751px) and (max-width: 900px) {
+  .ns-awesome-gallery {
+    .ns-gallery-photo {
+      width: 33.3333% !important;
+    }
+  }
+}
+
+@media (min-width: 551px) and (max-width: 750px) {
+  .ns-awesome-gallery {
+    .ns-gallery-photo {
+      width: 50% !important;
+    }
+  }
+}
+
+@media (min-width: 0) and (max-width: 550px) {
+  .ns-awesome-gallery {
+    .ns-gallery-photo {
+      width: 100% !important;
+
+      .ns-gallery-photo-image, .ns-gallery-photo-overlay {
+        margin-right: 0;
+      }
+    }
   }
 }
