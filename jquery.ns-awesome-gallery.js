@@ -20,6 +20,7 @@
         showPreviewer = function(image){
           var template = $(
             '<div id="ns-gallery-previewer">' +
+              '<div class="ns-gallery-photo-description">' + (image.name || "") + '</div>' +
               '<div class="ns-gallery-photo-cnt">' +
                 '<div class="ns-gallery-full-photo">' +
                   '<div class="ns-gallery-arrows">' +
@@ -38,7 +39,7 @@
               '</div>' +
               '<div class="ns-gallery-photo-action">' +
                 '<button class="like-button">' +
-                  '<img class="like-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AsRDQkIkiQQ4QAAAMNJREFUOMvFk80KQUEYht+hsLCz4QrkAizEQm7g7CXiAiS5QT8XYeEajgXqOOSxmTINHUPJU7OYr96nb94a6d8Y9wKUJbUlFSRtjDF7O69I6ki6SFoZY45PJiACYh4cgD4wBE7OPAYiP9wAzjxztccnAeqSlLOOiV3bJ2+PT1HS2BXUvuiv6grWXwiWbgclYEc4W6DgF9kC0oBwAjRf7gSMAwSDzIcBi4zwLKgdYO4Fb8D0o4qBke0kfbt2hqQHdH/6G++mNkWiYvN0pAAAAABJRU5ErkJggg==" alt=""> ' + image.totalVotes +
+                  '<span class="fa fa-heart"></span> ' + image.totalVotes +
                 '</button>' +
               '</div>' +
               '<span id="ns-gallery-previewer-close" class="fa fa-close"></span>' +
@@ -56,7 +57,8 @@
           var photosList = template.find('.ns-gallery-photos-list ul'),
               fullPhotoImg = template.find('.ns-gallery-full-photo img'),
               mainCnt = template.find('.ns-gallery-photo-cnt'),
-              likeButton = template.find('.like-button');
+              likeButton = template.find('.like-button'),
+              descriptionCnt = template.find('.ns-gallery-photo-description');
 
           likeButton.data('image_data', image);
 
@@ -71,7 +73,7 @@
               url: 'http://voteapi.zen.car/votes.json',
               data: JSON.stringify({photo_id: data.id, user_id: userId}),
               success: function (resp) {
-                likeButton.html('<img class="like-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AsRDQkIkiQQ4QAAAMNJREFUOMvFk80KQUEYht+hsLCz4QrkAizEQm7g7CXiAiS5QT8XYeEajgXqOOSxmTINHUPJU7OYr96nb94a6d8Y9wKUJbUlFSRtjDF7O69I6ki6SFoZY45PJiACYh4cgD4wBE7OPAYiP9wAzjxztccnAeqSlLOOiV3bJ2+PT1HS2BXUvuiv6grWXwiWbgclYEc4W6DgF9kC0oBwAjRf7gSMAwSDzIcBi4zwLKgdYO4Fb8D0o4qBke0kfbt2hqQHdH/6G++mNkWiYvN0pAAAAABJRU5ErkJggg==" alt=""> ' + resp.data.photo.totalVotes);
+                likeButton.html('<span class="fa fa-heart"></span> ' + resp.data.photo.totalVotes);
                 var img = template.find('.ns-gallery-photos-list img[src="'+resp.data.photo.file.thumb_url+'"]');
                 var imgData = img.data('image_data');
                 imgData.totalVotes = resp.data.photo.totalVotes;
@@ -122,7 +124,8 @@
             _img.trigger('click');
             var data = _img.data('image_data');
             likeButton.data('image_data', data);
-            likeButton.html('<img class="like-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AsRDQkIkiQQ4QAAAMNJREFUOMvFk80KQUEYht+hsLCz4QrkAizEQm7g7CXiAiS5QT8XYeEajgXqOOSxmTINHUPJU7OYr96nb94a6d8Y9wKUJbUlFSRtjDF7O69I6ki6SFoZY45PJiACYh4cgD4wBE7OPAYiP9wAzjxztccnAeqSlLOOiV3bJ2+PT1HS2BXUvuiv6grWXwiWbgclYEc4W6DgF9kC0oBwAjRf7gSMAwSDzIcBi4zwLKgdYO4Fb8D0o4qBke0kfbt2hqQHdH/6G++mNkWiYvN0pAAAAABJRU5ErkJggg==" alt=""> ' + data.totalVotes);
+            likeButton.html('<span class="fa fa-heart"></span> ' + data.totalVotes);
+            descriptionCnt.text(data.name || "");
           });
 
           template.find('.ns-gallery-arrow-right').on('click', function(e){
@@ -138,7 +141,8 @@
             _img.trigger('click');
             var data = _img.data('image_data');
             likeButton.data('image_data', data);
-            likeButton.html('<img class="like-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AsRDQkIkiQQ4QAAAMNJREFUOMvFk80KQUEYht+hsLCz4QrkAizEQm7g7CXiAiS5QT8XYeEajgXqOOSxmTINHUPJU7OYr96nb94a6d8Y9wKUJbUlFSRtjDF7O69I6ki6SFoZY45PJiACYh4cgD4wBE7OPAYiP9wAzjxztccnAeqSlLOOiV3bJ2+PT1HS2BXUvuiv6grWXwiWbgclYEc4W6DgF9kC0oBwAjRf7gSMAwSDzIcBi4zwLKgdYO4Fb8D0o4qBke0kfbt2hqQHdH/6G++mNkWiYvN0pAAAAABJRU5ErkJggg==" alt=""> ' + data.totalVotes);
+            likeButton.html('<span class="fa fa-heart"></span> ' + data.totalVotes);
+            descriptionCnt.text(data.name || "");
           });
 
           template.find('img[src="'+ image.file.thumb_url +'"]').parent().addClass('active');
@@ -159,7 +163,7 @@
               '</div>' +
               '<div class="ns-gallery-photo-overlay">' +
                 '<div class="ns-gallery-photo-likes">' +
-                  '<img class="like-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AsRDQkIkiQQ4QAAAMNJREFUOMvFk80KQUEYht+hsLCz4QrkAizEQm7g7CXiAiS5QT8XYeEajgXqOOSxmTINHUPJU7OYr96nb94a6d8Y9wKUJbUlFSRtjDF7O69I6ki6SFoZY45PJiACYh4cgD4wBE7OPAYiP9wAzjxztccnAeqSlLOOiV3bJ2+PT1HS2BXUvuiv6grWXwiWbgclYEc4W6DgF9kC0oBwAjRf7gSMAwSDzIcBi4zwLKgdYO4Fb8D0o4qBke0kfbt2hqQHdH/6G++mNkWiYvN0pAAAAABJRU5ErkJggg==" alt=""> ' + image.totalVotes +
+                  '<span class="fa fa-heart"></span>&nbsp;&nbsp;' + image.totalVotes +
                 '</div>' +
               '</div>'
           );

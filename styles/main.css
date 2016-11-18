@@ -7,8 +7,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; }
-  .ns-awesome-gallery * {
-    font-family: Arial, sans-serif; }
   .ns-awesome-gallery .like-icon {
     height: 14px;
     vertical-align: top; }
@@ -53,7 +51,8 @@
         -o-transition: background-color 0.4s;
         transition: background-color 0.4s;
         font-size: 14px;
-        cursor: default; }
+        cursor: default;
+        font-family: Arial, sans-serif; }
     .ns-awesome-gallery .ns-gallery-photo .ns-gallery-photo-name {
       font-size: 20px; }
     .ns-awesome-gallery .ns-gallery-photo .ns-gallery-photo-description {
@@ -70,6 +69,16 @@
   background-color: rgba(0, 0, 0, 0.9); }
   #ns-gallery-previewer .like-icon {
     height: 16px; }
+  #ns-gallery-previewer .ns-gallery-photo-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center; }
   #ns-gallery-previewer .ns-gallery-arrows {
     position: absolute;
     top: 0;

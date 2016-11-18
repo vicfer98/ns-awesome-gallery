@@ -9,10 +9,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
-  * {
-    font-family: Arial, sans-serif;
-  }
-
   .like-icon {
     height: 14px;
     vertical-align: top;
@@ -69,6 +65,7 @@
         transition: background-color 0.4s;
         font-size: 14px;
         cursor: default;
+        font-family: Arial, sans-serif;
       }
     }
 
@@ -94,6 +91,18 @@
 
   .like-icon {
     height: 16px;
+  }
+
+  .ns-gallery-photo-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
   }
 
   .ns-gallery-arrows {
