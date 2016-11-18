@@ -226,7 +226,7 @@
       if (!$(this).data('nsAwesomeGallery')) {
         $.ajax({
           type: 'GET',
-          url: "http://voteapi.zen.car/photos",
+          url: opt.url,
           success: function(resp){
             gallery = new NsAwesomeGallery(
               self,

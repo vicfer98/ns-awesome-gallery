@@ -10,11 +10,16 @@
 
     <script type="text/javascript">
         $(function(){
-            $('body').nsAwesomeGallery();
+            $('#cars').nsAwesomeGallery({url: "http://voteapi.zen.car/photos?kind=car"});
+            $('#girls').nsAwesomeGallery({url: "http://voteapi.zen.car/photos?kind=girl"});
         });
     </script>
 </head>
 <body>
-
+    <h1>Cars</h1>
+    <div id="cars"></div>
+    <hr>
+    <h1>Girls</h1>
+    <div id="girls"></div>
 </body>
 </html>
