@@ -35,6 +35,15 @@
       .ns-awesome-gallery .ns-gallery-photo .ns-gallery-photo-overlay:hover {
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.1); }
+      .ns-awesome-gallery .ns-gallery-photo .ns-gallery-photo-overlay .ns-gallery-photo-num {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 5px 10px;
+        background-color: rgba(255, 70, 0, 0.8);
+        -webkit-border-radius: 4px 0 4px 0;
+        -moz-border-radius: 4px 0 4px 0;
+        border-radius: 4px 0 4px 0; }
       .ns-awesome-gallery .ns-gallery-photo .ns-gallery-photo-overlay .ns-gallery-photo-likes {
         background-color: rgba(0, 0, 0, 0.7);
         padding: 10px 15px;
@@ -68,6 +77,13 @@
   background-color: rgba(0, 0, 0, 0.9); }
   #ns-gallery-previewer .like-icon {
     height: 16px; }
+  #ns-gallery-previewer .ns-gallery-photo-num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 12px 15px;
+    background-color: rgba(255, 70, 0, 0.8);
+    color: #ffffff; }
   #ns-gallery-previewer .ns-gallery-photo-description {
     position: absolute;
     top: 0;

@@ -20,6 +20,7 @@
         showPreviewer = function(image){
           var template = $(
             '<div id="ns-gallery-previewer">' +
+              '<div class="ns-gallery-photo-num">#&nbsp;' + image.id + '</div>' +
               '<div class="ns-gallery-photo-description">' + (image.name || "") + '</div>' +
               '<div class="ns-gallery-photo-cnt">' +
                 '<div class="ns-gallery-full-photo">' +
@@ -58,7 +59,8 @@
               fullPhotoImg = template.find('.ns-gallery-full-photo img'),
               mainCnt = template.find('.ns-gallery-photo-cnt'),
               likeButton = template.find('.like-button'),
-              descriptionCnt = template.find('.ns-gallery-photo-description');
+              descriptionCnt = template.find('.ns-gallery-photo-description'),
+              photoNumberCnt = template.find('.ns-gallery-photo-num');
 
           likeButton.data('image_data', image);
 
@@ -126,6 +128,7 @@
             likeButton.data('image_data', data);
             likeButton.html('<span class="fa fa-heart"></span> ' + data.totalVotes);
             descriptionCnt.text(data.name || "");
+            photoNumberCnt.text('# ' + data.id);
           });
 
           template.find('.ns-gallery-arrow-right').on('click', function(e){
@@ -143,6 +146,7 @@
             likeButton.data('image_data', data);
             likeButton.html('<span class="fa fa-heart"></span> ' + data.totalVotes);
             descriptionCnt.text(data.name || "");
+            photoNumberCnt.text('# ' + data.id);
           });
 
           template.find('img[src="'+ image.file.thumb_url +'"]').parent().addClass('active');
@@ -162,6 +166,7 @@
               '<div class="ns-gallery-photo-image" style="background-image: url('+ _image.thumb_url +');">' +
               '</div>' +
               '<div class="ns-gallery-photo-overlay">' +
+                '<div class="ns-gallery-photo-num">#&nbsp;' + image.id + '</div>' +
                 '<div class="ns-gallery-photo-likes">' +
                   '<span class="fa fa-heart"></span>&nbsp;&nbsp;' + image.totalVotes +
                 '</div>' +
